@@ -37,9 +37,35 @@
                 <td>
                     <!-- Add actions buttons or content here -->
                     <button wire:click="eliminarEmpleado({{ $empleado->id }})" class="btn btn-danger">Borrar</button>
+                    <button wire:click="abrirModal({{ $empleado->id }})" class="btn btn-primary">Detalles</button>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+
+    <!-- Modal para mostrar detalles del usuario -->
+    @if ($mostrarModal)
+    <div class="modal" tabindex="-1" role="dialog" style="display: block; background: rgba(0,0,0,0.5);">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalles del Usuario</h5>
+                    <button type="button" class="close" wire:click="cerrarModal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>ID: {{ $detallesEmpleado->id }}</p>
+                    <p>Nombre: {{ $detallesEmpleado->nombre }}</p>
+                    <p>Correo Electrónico: {{ $detallesEmpleado->correo }}</p>
+                    <!-- Agrega más campos según tus necesidades -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" wire:click="cerrarModal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>

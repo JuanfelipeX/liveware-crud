@@ -10,6 +10,9 @@ class EmpleadoComponents extends Component
     public $criterio;
     public $nombre;
     public $correo;
+    public $usarioIdObtenido;
+    public $detallesEmpleado;
+    public $mostrarModal = false;
 
     public function render()
     {
@@ -24,7 +27,6 @@ class EmpleadoComponents extends Component
         return view('livewire.empleado-components', compact("empleados"));
     }
 
-    
     public function crearEmpleado()
     {
         // Validate the input fields
@@ -47,12 +49,23 @@ class EmpleadoComponents extends Component
     }
 
     public function eliminarEmpleado($id)
-{
-    // Encuentra el empleado por su ID y elimínalo
-    Empleados::find($id)->delete();
+    {
+        // Encuentra el empleado por su ID y elimínalo
+        Empleados::find($id)->delete();
 
-    // Vuelve a cargar la lista de empleados después de eliminar uno
-    $this->render();
-}
+        // Vuelve a cargar la lista de empleados después de eliminar uno
+        $this->render();
+    }
 
+    public function abrirModal($empleadoId)
+    {
+        $this->usarioIdObtenido = $empleadoId;
+        $this->detallesEmpleado = Empleados::find($empleadoId);
+        $this->mostrarModal = true;
+    }
+
+    public function cerrarModal()
+    {
+        $this->mostrarModal = false;
+    }
 }
