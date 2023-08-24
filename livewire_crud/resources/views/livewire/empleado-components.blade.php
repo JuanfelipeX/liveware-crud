@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <h1 class="mb-4">Formulario de Nombre y Correo</h1>
-    <form wire:submit.prevent="createUser">
+    <form wire:submit.prevent="crearEmpleado">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre:</label>
             <input type="text" class="form-control" id="nombre" wire:model="nombre" placeholder="Ingresa tu nombre">
@@ -36,6 +36,7 @@
                 <td>{{ $empleado->correo }}</td>
                 <td>
                     <!-- Add actions buttons or content here -->
+                    <button wire:click="eliminarEmpleado({{ $empleado->id }})" class="btn btn-danger">Borrar</button>
                 </td>
             </tr>
             @endforeach

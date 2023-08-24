@@ -45,4 +45,14 @@ class EmpleadoComponents extends Component
 
         // Optionally, you can display a success message or redirect to a different page.
     }
+
+    public function eliminarEmpleado($id)
+{
+    // Encuentra el empleado por su ID y elimínalo
+    Empleados::find($id)->delete();
+
+    // Vuelve a cargar la lista de empleados después de eliminar uno
+    $this->render();
+}
+
 }
