@@ -14,6 +14,7 @@
     <!-- Livewire -->
     @livewireStyles
 
+
     <title>Laravel</title>
 </head>
 
